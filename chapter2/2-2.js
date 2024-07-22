@@ -36,4 +36,4 @@ setTimeout(function () {
       console.log('observerB: complete');
     }
   );
-}, 1359);
+}, 1350);
