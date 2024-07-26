@@ -1,0 +1,26 @@
+<!-- 조건이 있는 takeUntil 연산자 사용 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>takeUntil Example</title>
+  <script src="https://unpkg.com/rxjs@^7/dist/bundles/rxjs.umd.min.js"></script>
+</head>
+<body>
+  <div id="displayArea">
+    0secs
+  </div>
+  <button id="stop_btn" type="button">Stop</button>
+  <script>
+    const { fromEvent, interval } = rxjs;
+    const { take, takeUntil } = rxjs.operators;
+
+    interval(1000).pipe(
+      take(100),
+      takeUntil(fromEvent(document.querySelector('#stop_btn'), 'click'))
+    ).subscribe(
+      x => document.querySelector('#displayArea').innerHTML = `${x+1}secs`
+    );
+  </script>
+</body>
+</html>
